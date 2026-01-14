@@ -3,7 +3,7 @@
 ## ✅ Installed Components
 
 ### 1. Temporal Mask Tools
-**Location:** `/home/john/comfyui/custom_nodes/ComfyUI-Temporal-Mask-Tools`
+**Location:** `/path/to/comfyui/custom_nodes/ComfyUI-Temporal-Mask-Tools`
 
 **Nodes Available:**
 - **Temporal Mask Union** - Combines nearby frames to reduce flicker
@@ -18,7 +18,7 @@ SAM3 Mask → Temporal Mask Union → Feathered Mask → Inpaint
 ---
 
 ### 2. Feathered Inpaint Mask (Custom)
-**Location:** `/home/john/comfyui/custom_nodes/ComfyUI-Feathered-Inpaint`
+**Location:** `/path/to/comfyui/custom_nodes/ComfyUI-Feathered-Inpaint`
 
 **Nodes:**
 
@@ -232,7 +232,7 @@ SAM3 → Remove Short Objects → Temporal Union (7) → Feather (15, smoother) 
 **To load the new nodes:**
 ```bash
 pkill -f "python main.py"
-cd /home/john/comfyui
+cd /path/to/comfyui
 ./start_comfyui.sh
 ```
 

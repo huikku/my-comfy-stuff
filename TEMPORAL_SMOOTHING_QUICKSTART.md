@@ -75,7 +75,7 @@ No compression, no artifacts, perfect preservation
 ### Step 1: Restart ComfyUI
 ```bash
 pkill -f "python main.py"
-cd /home/john/comfyui
+cd /path/to/comfyui
 ./start_comfyui.sh
 ```
 
@@ -211,8 +211,8 @@ After Inpaint + Preserve:
 ## 📚 Full Documentation
 
 **Detailed guides:**
-- `/home/john/comfyui/TEMPORAL_SMOOTHING_GUIDE.md` - Complete reference
-- `/home/john/comfyui/VIDEO_INPAINTING_RESEARCH_REPORT.md` - Technical details
-- `/home/john/comfyui/VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - Workflow variants
+- `/path/to/comfyui/TEMPORAL_SMOOTHING_GUIDE.md` - Complete reference
+- `/path/to/comfyui/VIDEO_INPAINTING_RESEARCH_REPORT.md` - Technical details
+- `/path/to/comfyui/VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - Workflow variants
 
 **Next step:** Fix ProPainter import error, then you're ready to go!

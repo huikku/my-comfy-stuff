@@ -230,7 +230,7 @@ To complete the clean plate workflow, we need a working video inpainting node to
 
 2. **Refresh node definitions:**
    ```bash
-   cd /home/john/comfyui
+   cd /path/to/comfyui
    python refresh-nodes.py
    ```
 

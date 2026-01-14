@@ -38,7 +38,7 @@ Video inpainting for character removal requires a **two-stage pipeline**:
 - Tracks through occlusions and motion
 - Handles complex scenes
 
-**Your Installation Status:** ✅ Installed at `/home/john/comfyui/custom_nodes/ComfyUI-TBG-SAM3`
+**Your Installation Status:** ✅ Installed at `/path/to/comfyui/custom_nodes/ComfyUI-TBG-SAM3`
 
 #### **SAM2 (Segment Anything Model 2)**
 **Released:** 2024 by Meta AI
@@ -54,7 +54,7 @@ Video inpainting for character removal requires a **two-stage pipeline**:
 - Excellent for specific character selection
 - Proven reliability
 
-**Your Installation Status:** ✅ Installed at `/home/john/comfyui/custom_nodes/ComfyUI-SAM2`
+**Your Installation Status:** ✅ Installed at `/path/to/comfyui/custom_nodes/ComfyUI-SAM2`
 
 ---
 
@@ -75,7 +75,7 @@ Video inpainting for character removal requires a **two-stage pipeline**:
 - Good with camera motion
 - Fast processing
 
-**Your Installation Status:** ✅ Installed at `/home/john/comfyui/custom_nodes/ComfyUI_ProPainter_Nodes`
+**Your Installation Status:** ✅ Installed at `/path/to/comfyui/custom_nodes/ComfyUI_ProPainter_Nodes`
 **Note:** Currently has import errors - needs fixing
 
 #### **E2FGVI (End-to-End Flow-Guided Video Inpainting)**
@@ -434,10 +434,10 @@ VHS Load Video
 - Video tutorials: YouTube (multiple channels)
 
 ### Your Installed Nodes
-- `/home/john/comfyui/custom_nodes/ComfyUI-TBG-SAM3`
-- `/home/john/comfyui/custom_nodes/ComfyUI-SAM2`
-- `/home/john/comfyui/custom_nodes/ComfyUI_ProPainter_Nodes`
-- `/home/john/comfyui/custom_nodes/ComfyUI-VideoHelperSuite`
+- `/path/to/comfyui/custom_nodes/ComfyUI-TBG-SAM3`
+- `/path/to/comfyui/custom_nodes/ComfyUI-SAM2`
+- `/path/to/comfyui/custom_nodes/ComfyUI_ProPainter_Nodes`
+- `/path/to/comfyui/custom_nodes/ComfyUI-VideoHelperSuite`
 
 ---
 
