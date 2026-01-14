@@ -1,33 +1,31 @@
 # ComfyUI Video Inpainting Workflows
 
-Clean plate generation workflows for removing foreground characters from video scenes.
+**Complete clean plate generation workflows for removing foreground characters from video scenes.**
 
-## ⚠️ IMPORTANT: Read This First
+## ✅ WORKING: Full Video Inpainting!
 
-**These workflows generate MASKS ONLY - they do NOT perform actual video inpainting.**
-
-See `CURRENT_LIMITATION.md` for details.
-
-**What you get:** Character detection masks with soft edges  
-**What you DON'T get:** Complete clean plate videos (requires ProPainter fix)
+**ProPainter is now fixed and working!** These workflows generate complete clean plates, not just masks.
 
 ---
 
 ## 📦 What's Included
 
-### Workflows (2)
-- `video_inpaint_sam3_basic_v1.json` - SAM3 automated character detection → **MASK OUTPUT**
-- `video_inpaint_rmbg_fast_v1.json` - RMBG fast background removal → **MASK OUTPUT**
+### Complete Workflows (v2 - WITH Inpainting)
+- `video_inpaint_sam3_complete_v2.json` - SAM3 + ProPainter → **COMPLETE CLEAN PLATE**
+- `video_inpaint_rmbg_complete_v2.json` - RMBG + ProPainter → **COMPLETE CLEAN PLATE**
 
-### Custom Node (1)
+### Mask-Only Workflows (v1 - Legacy)
+- `video_inpaint_sam3_basic_v1.json` - SAM3 mask generation only
+- `video_inpaint_rmbg_fast_v1.json` - RMBG mask generation only
+
+### Custom Node
 - `ComfyUI-Feathered-Inpaint` - Feathered mask edges with pixel preservation
 
-### Documentation (7)
-- `CURRENT_LIMITATION.md` - **READ THIS!** Explains what's missing
+### Documentation
 - `SUMMARY.md` - Complete overview and quick start
-- `VIDEO_INPAINTING_RESEARCH_REPORT.md` - Technical research & state-of-the-art
-- `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - Advanced workflow options
-- `TEMPORAL_SMOOTHING_GUIDE.md` - Reduce mask flickering (detailed)
+- `VIDEO_INPAINTING_RESEARCH_REPORT.md` - Technical research
+- `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - Advanced options
+- `TEMPORAL_SMOOTHING_GUIDE.md` - Reduce flickering (detailed)
 - `TEMPORAL_SMOOTHING_QUICKSTART.md` - Quick start guide
 - `workflows/VIDEO_INPAINT_WORKFLOWS_README.md` - Workflow usage guide
 
@@ -35,76 +33,88 @@ See `CURRENT_LIMITATION.md` for details.
 
 ## 🚀 Quick Start
 
-**Read:** `CURRENT_LIMITATION.md` first to understand what these workflows do
+**Use v2 workflows for complete clean plates!**
 
-**TL;DR:**
-1. Install required ComfyUI nodes (SAM3 or RMBG, VHS)
-2. Copy `custom_nodes/ComfyUI-Feathered-Inpaint` to your ComfyUI
-3. Load a workflow in ComfyUI
-4. Set video path
-5. Run!
-6. **Get masks** (not complete clean plates)
+1. **Install required ComfyUI nodes:**
+   - ComfyUI-VideoHelperSuite (VHS)
+   - ComfyUI-TBG-SAM3 (for SAM3 workflow)
+   - ComfyUI-RMBG (for RMBG workflow)
+   - ComfyUI_ProPainter_Nodes (for inpainting)
+
+2. **Copy custom node:**
+   ```bash
+   cp -r custom_nodes/ComfyUI-Feathered-Inpaint /path/to/comfyui/custom_nodes/
+   ```
+
+3. **Load a v2 workflow:**
+   - Open ComfyUI
+   - Load `video_inpaint_sam3_complete_v2.json` or `video_inpaint_rmbg_complete_v2.json`
+   - Set video path in "VHS_LoadVideoPath" node
+   - Click "Queue Prompt"
+
+4. **Get your clean plate:**
+   - Output saved to `/path/to/comfyui/output/`
+   - Complete video with character removed!
 
 ---
 
 ## 🎯 Workflows
 
-### SAM3 Basic v1
-- **Output:** Character detection mask + visualization
-- **VRAM:** 18-27GB
-- **Best for:** Complex scenes, multiple characters
-- **Does NOT:** Fill masked region with background
+### SAM3 Complete v2 ⭐ NEW
+- **Output:** Complete clean plate video (character removed, background filled)
+- **VRAM:** 20-30GB
+- **Best for:** Complex scenes, multiple characters, automated detection
+- **Includes:** SAM3 detection + feathered mask + ProPainter inpainting
 
-### RMBG Fast v1
-- **Output:** Background removed video + mask
-- **VRAM:** 10-16GB
-- **Best for:** Static camera, clean subjects
-- **Does NOT:** Reconstruct background content
+### RMBG Complete v2 ⭐ NEW
+- **Output:** Complete clean plate video (character removed, background filled)
+- **VRAM:** 12-18GB
+- **Best for:** Static camera, clean subjects, faster processing
+- **Includes:** RMBG removal + feathered mask + ProPainter inpainting
 
----
-
-## ✅ Current Status (v1.0)
-
-**What Works:**
-- ✅ Character detection (SAM3)
-- ✅ Background removal (RMBG)
-- ✅ Mask generation with feathered edges
-- ✅ Temporal smoothing support
-
-**What's Missing:**
-- ❌ **Video inpainting** (ProPainter broken)
-- ❌ Background reconstruction
-- ❌ Complete clean plate generation
-- ❌ Automated character removal
-
-**Use Cases:**
-- Generate masks for external tools
-- Test character detection
-- Prepare for manual inpainting
-- Background removal for compositing
+### v1 Workflows (Legacy - Mask Only)
+- Use v2 instead for complete results
+- v1 only generates masks without inpainting
 
 ---
 
-## 🔮 Future (v2.0)
+## ✅ What's Fixed
 
-**When ProPainter is fixed:**
-- ✅ Complete video inpainting
-- ✅ Automated clean plate generation
-- ✅ Background reconstruction
-- ✅ Full pipeline workflows
+**ProPainter Integration:**
+- ✅ Fixed PyTorch version parsing for dev versions
+- ✅ ProPainter nodes now load successfully
+- ✅ Full video inpainting working
+- ✅ Complete clean plate generation
 
-**Until then:**
-- Use external tools for actual inpainting
-- Or manually composite results
-- Or wait for ProPainter fix
+**Complete Pipeline:**
+```
+1. Load Video
+   ↓
+2. Generate Mask (SAM3 or RMBG)
+   ↓
+3. Feather Edges
+   ↓
+4. VIDEO INPAINTING (ProPainter) ✅ NOW WORKING
+   ↓
+5. Save Clean Plate
+```
+
+---
+
+## 📊 VRAM Requirements
+
+| GPU VRAM | Recommended Workflow | Resolution |
+|----------|---------------------|------------|
+| **12GB** | RMBG Complete v2 | 512p |
+| **16GB** | RMBG Complete v2 | 720p |
+| **20GB** | SAM3 Complete v2 | 512p |
+| **24GB+** | SAM3 Complete v2 | 720p-1080p |
 
 ---
 
 ## 📚 Documentation
 
-**Start here:** 
-1. `CURRENT_LIMITATION.md` - Understand what's missing
-2. `SUMMARY.md` - Complete overview
+**Start here:** `SUMMARY.md`
 
 **For details:**
 - Technical research → `VIDEO_INPAINTING_RESEARCH_REPORT.md`
@@ -117,15 +127,14 @@ See `CURRENT_LIMITATION.md` for details.
 ## 🔧 Requirements
 
 - ComfyUI 0.8.2+
-- PyTorch 2.11.0+
-- 8GB+ VRAM (16GB+ recommended)
-- Required nodes: VHS, SAM3 or RMBG
-- **NOT required:** ProPainter (broken anyway)
+- PyTorch 2.11.0+ (dev versions supported)
+- 12GB+ VRAM (20GB+ recommended)
+- Required nodes: VHS, SAM3 or RMBG, ProPainter
 
 ---
 
-**Version:** 1.0 (Mask Generation Only)  
+**Version:** 2.0 (Complete Video Inpainting)  
 **Date:** January 14, 2026  
 **Author:** huikku
 
-**Ready to generate masks - actual inpainting requires external tools or v2.0!** 🎬
+**Ready to generate complete clean plates!** 🎬✨
