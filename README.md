@@ -2,85 +2,89 @@
 
 Clean plate generation workflows for removing foreground characters from video scenes.
 
-## 📦 Contents
+## 📦 What's Included
 
-### Workflows
+### Workflows (2)
 - `video_inpaint_sam3_basic_v1.json` - SAM3 automated character detection
 - `video_inpaint_rmbg_fast_v1.json` - RMBG fast background removal
 
-### Custom Nodes
+### Custom Node (1)
 - `ComfyUI-Feathered-Inpaint` - Feathered mask edges with pixel preservation
 
-### Documentation
+### Documentation (6)
+- `SUMMARY.md` - **Start here!** Complete overview and quick start
 - `VIDEO_INPAINTING_RESEARCH_REPORT.md` - Technical research & state-of-the-art
-- `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - RMBG & Depth integration options
-- `VIDEO_INPAINTING_MISSING_PIECES.md` - Missing features & roadmap
-- `TEMPORAL_SMOOTHING_GUIDE.md` - Reduce mask flickering
+- `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - Advanced workflow options
+- `TEMPORAL_SMOOTHING_GUIDE.md` - Reduce mask flickering (detailed)
 - `TEMPORAL_SMOOTHING_QUICKSTART.md` - Quick start guide
 - `workflows/VIDEO_INPAINT_WORKFLOWS_README.md` - Workflow usage guide
-- `COMPLETE_INSTALLATION_GUIDE.md` - Full installation instructions
+
+---
 
 ## 🚀 Quick Start
 
-1. **Install Required Nodes:**
-   - ComfyUI-TBG-SAM3 (for SAM3 workflow)
-   - ComfyUI-RMBG (for RMBG workflow)
-   - ComfyUI-VideoHelperSuite (VHS)
-   - ComfyUI-Temporal-Mask-Tools
-   - Copy `custom_nodes/ComfyUI-Feathered-Inpaint` to your ComfyUI
+**Read:** `SUMMARY.md` for complete overview
 
-2. **Load a Workflow:**
-   - Open ComfyUI
-   - Load `video_inpaint_sam3_basic_v1.json` or `video_inpaint_rmbg_fast_v1.json`
-   - Set video path
-   - Run!
+**TL;DR:**
+1. Install required ComfyUI nodes (SAM3 or RMBG, VHS)
+2. Copy `custom_nodes/ComfyUI-Feathered-Inpaint` to your ComfyUI
+3. Load a workflow in ComfyUI
+4. Set video path
+5. Run!
 
-3. **Read the Docs:**
-   - Start with `workflows/VIDEO_INPAINT_WORKFLOWS_README.md`
-   - See `VIDEO_INPAINTING_RESEARCH_REPORT.md` for technical details
+---
 
-## 🎯 Workflow Overview
+## 🎯 Workflows
 
-### SAM3 Basic (v1)
-- **Purpose:** Automated person detection and mask generation
+### SAM3 Basic v1
+- **Purpose:** Automated person detection
 - **VRAM:** 18-27GB
 - **Best for:** Complex scenes, multiple characters
-- **Output:** Segmentation visualization + feathered mask
 
-### RMBG Fast (v1)
+### RMBG Fast v1
 - **Purpose:** Fast background removal
 - **VRAM:** 10-16GB
 - **Best for:** Static camera, clean subjects
-- **Output:** Background removed video + feathered mask
+
+---
 
 ## ⚠️ Current Status
 
-**Working:**
-- ✅ Mask generation (SAM3, RMBG)
-- ✅ Temporal smoothing
+**v1.0 - Mask Generation:**
+- ✅ SAM3 and RMBG mask generation
 - ✅ Feathered edges
+- ✅ Temporal smoothing support
 
-**Pending:**
-- ⚠️ ProPainter video inpainting (import error - needs fix)
-- ⏳ Complete v2 workflows with full inpainting pipeline
+**Future v2.0 - Complete Inpainting:**
+- ⏳ ProPainter integration (pending fix)
+- ⏳ Full clean plate generation
+- ⏳ Pixel preservation compositing
+
+---
 
 ## 📚 Documentation
 
-See the markdown files for:
-- Technical research on video inpainting
-- Workflow variants and options
-- Installation instructions
-- Temporal smoothing techniques
-- Missing features and roadmap
+**Start here:** `SUMMARY.md`
 
-## 🔧 System Requirements
+**For details:**
+- Technical research → `VIDEO_INPAINTING_RESEARCH_REPORT.md`
+- Advanced options → `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md`
+- Reduce flickering → `TEMPORAL_SMOOTHING_QUICKSTART.md`
+- Workflow guide → `workflows/VIDEO_INPAINT_WORKFLOWS_README.md`
+
+---
+
+## 🔧 Requirements
 
 - ComfyUI 0.8.2+
-- PyTorch 2.11.0+ (CUDA 13.0 for Thor GPU)
+- PyTorch 2.11.0+
 - 8GB+ VRAM (16GB+ recommended)
+- Required nodes: VHS, SAM3 or RMBG
 
 ---
 
 **Version:** 1.0  
 **Date:** January 14, 2026  
 **Author:** huikku
+
+**Ready to generate clean plate masks!** 🎬✨
