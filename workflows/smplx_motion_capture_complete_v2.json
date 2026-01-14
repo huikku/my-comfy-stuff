@@ -1,98 +1,370 @@
 {
-    "1": {
-        "class_type": "VHS_LoadVideo",
-        "inputs": {
-            "video": "girl_dance_on_road.mp4",
-            "force_rate": 30,
-            "custom_width": 1920,
-            "custom_height": 1080,
-            "frame_load_cap": 0,
-            "skip_first_frames": 0,
-            "select_every_nth": 1
-        }
-    },
-    "2": {
-        "class_type": "VHS_SelectImages",
-        "inputs": {
-            "image": [
-                "1",
-                0
+    "last_node_id": 8,
+    "last_link_id": 8,
+    "nodes": [
+        {
+            "id": 1,
+            "type": "VHS_LoadVideo",
+            "pos": [
+                100,
+                100
             ],
-            "indexes": "0:-1",
-            "err_if_missing": false,
-            "err_if_empty": false
-        }
-    },
-    "3": {
-        "class_type": "LoadWHAMModels",
-        "inputs": {
-            "run_global": true
-        }
-    },
-    "4": {
-        "class_type": "WHAMInference",
-        "inputs": {
-            "images": [
-                "2",
-                0
+            "size": [
+                320,
+                200
             ],
-            "model": [
-                "3",
-                0
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "outputs": [
+                {
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [
+                        1
+                    ]
+                },
+                {
+                    "name": "frame_count",
+                    "type": "INT",
+                    "links": null
+                }
             ],
-            "fps": 30.0
-        }
-    },
-    "5": {
-        "class_type": "SaveSMPLXParams",
-        "inputs": {
-            "smpl_params": [
-                "4",
-                0
-            ],
-            "filename_prefix": "motion_capture",
-            "format": "npz"
-        }
-    },
-    "6": {
-        "class_type": "ExportSMPLXAnimation",
-        "inputs": {
-            "smpl_params": [
-                "4",
-                0
-            ],
-            "filename_prefix": "skeleton_anim",
-            "format": "bvh",
-            "fps": 30.0
-        }
-    },
-    "7": {
-        "class_type": "ExportSMPLXMeshSequence",
-        "inputs": {
-            "smpl_params": [
-                "4",
-                0
-            ],
-            "model_path": "models/smplx",
-            "gender": "neutral",
-            "filename_prefix": "animated_mesh",
-            "format": "obj",
-            "frame_skip": 1
-        }
-    },
-    "8": {
-        "class_type": "VHS_VideoCombine",
-        "inputs": {
-            "images": [
-                "4",
+            "properties": {},
+            "widgets_values": [
+                "girl_dance_on_road.mp4",
+                30,
+                1920,
+                1080,
+                0,
+                0,
                 1
+            ]
+        },
+        {
+            "id": 2,
+            "type": "VHS_SelectImages",
+            "pos": [
+                450,
+                100
             ],
-            "frame_rate": 30,
-            "loop_count": 0,
-            "filename_prefix": "motion_visualization",
-            "format": "video/h264-mp4",
-            "pingpong": false,
-            "save_output": true
+            "size": [
+                300,
+                150
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "image",
+                    "type": "IMAGE",
+                    "link": 1
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "IMAGE",
+                    "type": "IMAGE",
+                    "links": [
+                        2
+                    ]
+                }
+            ],
+            "properties": {},
+            "widgets_values": [
+                "0:-1",
+                false,
+                false
+            ]
+        },
+        {
+            "id": 3,
+            "type": "LoadWHAMModels",
+            "pos": [
+                100,
+                350
+            ],
+            "size": [
+                300,
+                100
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "outputs": [
+                {
+                    "name": "model",
+                    "type": "WHAM_MODEL",
+                    "links": [
+                        3
+                    ]
+                }
+            ],
+            "properties": {},
+            "widgets_values": [
+                true
+            ]
+        },
+        {
+            "id": 4,
+            "type": "WHAMInference",
+            "pos": [
+                450,
+                300
+            ],
+            "size": [
+                300,
+                150
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "images",
+                    "type": "IMAGE",
+                    "link": 2
+                },
+                {
+                    "name": "model",
+                    "type": "WHAM_MODEL",
+                    "link": 3
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "smpl_params",
+                    "type": "SMPL_PARAMS",
+                    "links": [
+                        4,
+                        5,
+                        6
+                    ]
+                },
+                {
+                    "name": "visualization",
+                    "type": "IMAGE",
+                    "links": [
+                        7
+                    ]
+                },
+                {
+                    "name": "info",
+                    "type": "STRING",
+                    "links": null
+                }
+            ],
+            "properties": {},
+            "widgets_values": [
+                30.0
+            ]
+        },
+        {
+            "id": 5,
+            "type": "SaveSMPLXParams",
+            "pos": [
+                800,
+                100
+            ],
+            "size": [
+                300,
+                120
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "smpl_params",
+                    "type": "SMPL_PARAMS",
+                    "link": 4
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "file_path",
+                    "type": "STRING",
+                    "links": null
+                }
+            ],
+            "properties": {},
+            "widgets_values": [
+                "motion_capture",
+                "npz"
+            ]
+        },
+        {
+            "id": 6,
+            "type": "ExportSMPLXAnimation",
+            "pos": [
+                800,
+                250
+            ],
+            "size": [
+                300,
+                150
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "smpl_params",
+                    "type": "SMPL_PARAMS",
+                    "link": 5
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "file_path",
+                    "type": "STRING",
+                    "links": null
+                }
+            ],
+            "properties": {},
+            "widgets_values": [
+                "skeleton_anim",
+                "bvh",
+                30.0
+            ]
+        },
+        {
+            "id": 7,
+            "type": "ExportSMPLXMeshSequence",
+            "pos": [
+                800,
+                430
+            ],
+            "size": [
+                300,
+                200
+            ],
+            "flags": {},
+            "order": 6,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "smpl_params",
+                    "type": "SMPL_PARAMS",
+                    "link": 6
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output_dir",
+                    "type": "STRING",
+                    "links": null
+                }
+            ],
+            "properties": {},
+            "widgets_values": [
+                "models/smplx",
+                "neutral",
+                "animated_mesh",
+                "obj",
+                1
+            ]
+        },
+        {
+            "id": 8,
+            "type": "VHS_VideoCombine",
+            "pos": [
+                1150,
+                300
+            ],
+            "size": [
+                300,
+                200
+            ],
+            "flags": {},
+            "order": 7,
+            "mode": 0,
+            "inputs": [
+                {
+                    "name": "images",
+                    "type": "IMAGE",
+                    "link": 7
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Filenames",
+                    "type": "VHS_FILENAMES",
+                    "links": null
+                }
+            ],
+            "properties": {},
+            "widgets_values": [
+                30,
+                0,
+                "motion_visualization",
+                "video/h264-mp4",
+                false,
+                true
+            ]
         }
-    }
+    ],
+    "links": [
+        [
+            1,
+            1,
+            0,
+            2,
+            0,
+            "IMAGE"
+        ],
+        [
+            2,
+            2,
+            0,
+            4,
+            0,
+            "IMAGE"
+        ],
+        [
+            3,
+            3,
+            0,
+            4,
+            1,
+            "WHAM_MODEL"
+        ],
+        [
+            4,
+            4,
+            0,
+            5,
+            0,
+            "SMPL_PARAMS"
+        ],
+        [
+            5,
+            4,
+            0,
+            6,
+            0,
+            "SMPL_PARAMS"
+        ],
+        [
+            6,
+            4,
+            0,
+            7,
+            0,
+            "SMPL_PARAMS"
+        ],
+        [
+            7,
+            4,
+            1,
+            8,
+            0,
+            "IMAGE"
+        ]
+    ],
+    "groups": [],
+    "config": {},
+    "extra": {},
+    "version": 0.4
 }
