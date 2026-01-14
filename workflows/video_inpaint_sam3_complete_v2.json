@@ -41,7 +41,9 @@
           "links": null
         }
       ],
-      "properties": {},
+      "properties": {
+        "Node name for S&R": "VHS_LoadVideoPath"
+      },
       "widgets_values": [
         "",
         0,
@@ -68,14 +70,16 @@
       "mode": 0,
       "outputs": [
         {
-          "name": "sam3_model",
+          "name": "SAM3_MODEL",
           "type": "SAM3_MODEL",
           "links": [
             2
           ]
         }
       ],
-      "properties": {},
+      "properties": {
+        "Node name for S&R": "TBGLoadSAM3Model"
+      },
       "widgets_values": [
         "cuda"
       ]
@@ -89,7 +93,7 @@
       ],
       "size": [
         300,
-        200
+        250
       ],
       "flags": {},
       "order": 2,
@@ -108,19 +112,46 @@
       ],
       "outputs": [
         {
-          "name": "IMAGE",
+          "name": "masks",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "visualization",
           "type": "IMAGE",
           "links": null
         },
         {
-          "name": "MASK",
+          "name": "boxes",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "scores",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "segs",
+          "type": "SEGS",
+          "links": null
+        },
+        {
+          "name": "combined_mask",
           "type": "MASK",
           "links": [
             3
           ]
+        },
+        {
+          "name": "combined_segs",
+          "type": "SEGS",
+          "links": null
         }
       ],
-      "properties": {},
+      "properties": {
+        "Node name for S&R": "TBGSam3Segmentation"
+      },
       "widgets_values": [
         "person",
         0.4,
@@ -163,7 +194,9 @@
           ]
         }
       ],
-      "properties": {},
+      "properties": {
+        "Node name for S&R": "FeatherMask"
+      },
       "widgets_values": [
         15,
         15,
@@ -180,7 +213,7 @@
       ],
       "size": [
         300,
-        250
+        300
       ],
       "flags": {},
       "order": 4,
@@ -204,9 +237,21 @@
           "links": [
             6
           ]
+        },
+        {
+          "name": "FLOW_MASK",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "MASK_DILATE",
+          "type": "MASK",
+          "links": null
         }
       ],
-      "properties": {},
+      "properties": {
+        "Node name for S&R": "ProPainterInpaint"
+      },
       "widgets_values": [
         512,
         512,
@@ -216,7 +261,7 @@
         10,
         80,
         20,
-        true
+        "enable"
       ]
     },
     {
@@ -247,7 +292,9 @@
           "links": null
         }
       ],
-      "properties": {},
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
       "widgets_values": [
         30,
         0,
@@ -278,7 +325,7 @@
     [
       3,
       3,
-      1,
+      5,
       4,
       0,
       "MASK"
