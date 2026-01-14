@@ -1,57 +1,83 @@
-# My ComfyUI Stuff
+# ComfyUI Video Inpainting Workflows
 
-Custom workflows, nodes, and documentation for ComfyUI video inpainting on NVIDIA Thor DevKit.
+Clean plate generation workflows for removing foreground characters from video scenes.
 
 ## 📦 Contents
 
-### Documentation (31 files)
-Complete documentation for video inpainting system including:
-- Installation guides
-- Workflow tutorials
-- Troubleshooting
-- Research reports
-- System configuration
-
-**Start here:** `QUICK_REFERENCE.md` or `README_VIDEO_INPAINTING.md`
-
-### Workflows (2 files)
+### Workflows
 - `video_inpaint_sam3_basic_v1.json` - SAM3 automated character detection
 - `video_inpaint_rmbg_fast_v1.json` - RMBG fast background removal
 
 ### Custom Nodes
 - `ComfyUI-Feathered-Inpaint` - Feathered mask edges with pixel preservation
 
+### Documentation
+- `VIDEO_INPAINTING_RESEARCH_REPORT.md` - Technical research & state-of-the-art
+- `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - RMBG & Depth integration options
+- `VIDEO_INPAINTING_MISSING_PIECES.md` - Missing features & roadmap
+- `TEMPORAL_SMOOTHING_GUIDE.md` - Reduce mask flickering
+- `TEMPORAL_SMOOTHING_QUICKSTART.md` - Quick start guide
+- `workflows/VIDEO_INPAINT_WORKFLOWS_README.md` - Workflow usage guide
+- `COMPLETE_INSTALLATION_GUIDE.md` - Full installation instructions
+
 ## 🚀 Quick Start
 
-See `QUICK_REFERENCE.md` for commands and `COMPLETE_INSTALLATION_GUIDE.md` for full setup.
+1. **Install Required Nodes:**
+   - ComfyUI-TBG-SAM3 (for SAM3 workflow)
+   - ComfyUI-RMBG (for RMBG workflow)
+   - ComfyUI-VideoHelperSuite (VHS)
+   - ComfyUI-Temporal-Mask-Tools
+   - Copy `custom_nodes/ComfyUI-Feathered-Inpaint` to your ComfyUI
 
-## 📚 Documentation Index
+2. **Load a Workflow:**
+   - Open ComfyUI
+   - Load `video_inpaint_sam3_basic_v1.json` or `video_inpaint_rmbg_fast_v1.json`
+   - Set video path
+   - Run!
 
-See `DOCUMENTATION_INDEX.md` for complete list of all documentation.
+3. **Read the Docs:**
+   - Start with `workflows/VIDEO_INPAINT_WORKFLOWS_README.md`
+   - See `VIDEO_INPAINTING_RESEARCH_REPORT.md` for technical details
 
-## 🎯 System
+## 🎯 Workflow Overview
 
-- **Platform:** NVIDIA Thor DevKit (125GB Unified Memory)
-- **ComfyUI:** 0.8.2
-- **PyTorch:** 2.11.0 (CUDA 13.0)
-- **Python:** 3.12.3
+### SAM3 Basic (v1)
+- **Purpose:** Automated person detection and mask generation
+- **VRAM:** 18-27GB
+- **Best for:** Complex scenes, multiple characters
+- **Output:** Segmentation visualization + feathered mask
 
-## ✅ Features
+### RMBG Fast (v1)
+- **Purpose:** Fast background removal
+- **VRAM:** 10-16GB
+- **Best for:** Static camera, clean subjects
+- **Output:** Background removed video + feathered mask
 
-- ✅ SAM3 text-prompted segmentation
-- ✅ RMBG fast background removal
-- ✅ Temporal mask smoothing
-- ✅ Feathered mask edges
-- ✅ Pixel-perfect preservation
-- ✅ LLM workflow generation
-- ⚠️ ProPainter video inpainting (needs fix)
+## ⚠️ Current Status
 
-## 📖 Learn More
+**Working:**
+- ✅ Mask generation (SAM3, RMBG)
+- ✅ Temporal smoothing
+- ✅ Feathered edges
 
-Browse the documentation files or start with:
-1. `QUICK_REFERENCE.md`
-2. `COMPLETE_INSTALLATION_GUIDE.md`
-3. `workflows/VIDEO_INPAINT_WORKFLOWS_README.md`
+**Pending:**
+- ⚠️ ProPainter video inpainting (import error - needs fix)
+- ⏳ Complete v2 workflows with full inpainting pipeline
+
+## 📚 Documentation
+
+See the markdown files for:
+- Technical research on video inpainting
+- Workflow variants and options
+- Installation instructions
+- Temporal smoothing techniques
+- Missing features and roadmap
+
+## 🔧 System Requirements
+
+- ComfyUI 0.8.2+
+- PyTorch 2.11.0+ (CUDA 13.0 for Thor GPU)
+- 8GB+ VRAM (16GB+ recommended)
 
 ---
 
