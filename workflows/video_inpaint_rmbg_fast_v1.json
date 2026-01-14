@@ -1,0 +1,74 @@
+{
+    "1": {
+        "class_type": "VHS_LoadVideoPath",
+        "inputs": {
+            "video": "",
+            "force_rate": 0,
+            "custom_width": 512,
+            "custom_height": 512,
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+        }
+    },
+    "2": {
+        "class_type": "RMBG",
+        "inputs": {
+            "image": [
+                "1",
+                0
+            ],
+            "model": "RMBG-2.0",
+            "sensitivity": 0.5,
+            "process_res": 1024,
+            "mask_blur": 0,
+            "mask_offset": 0,
+            "invert_output": true,
+            "refine_foreground": false,
+            "background": "Alpha"
+        }
+    },
+    "3": {
+        "class_type": "FeatherMask",
+        "inputs": {
+            "mask": [
+                "2",
+                1
+            ],
+            "left": 15,
+            "top": 15,
+            "right": 15,
+            "bottom": 15
+        }
+    },
+    "4": {
+        "class_type": "VHS_VideoCombine",
+        "inputs": {
+            "images": [
+                "2",
+                0
+            ],
+            "frame_rate": 30,
+            "loop_count": 0,
+            "filename_prefix": "rmbg_result",
+            "format": "video/h264-mp4",
+            "pingpong": false,
+            "save_output": true
+        }
+    },
+    "5": {
+        "class_type": "VHS_VideoCombine",
+        "inputs": {
+            "images": [
+                "3",
+                0
+            ],
+            "frame_rate": 30,
+            "loop_count": 0,
+            "filename_prefix": "rmbg_feathered_mask",
+            "format": "video/h264-mp4",
+            "pingpong": false,
+            "save_output": true
+        }
+    }
+}
