@@ -12,41 +12,53 @@
         }
     },
     "2": {
+        "class_type": "VHS_SelectImages",
+        "inputs": {
+            "image": [
+                "1",
+                0
+            ],
+            "indexes": "0:-1",
+            "err_if_missing": false,
+            "err_if_empty": false
+        }
+    },
+    "3": {
         "class_type": "LoadWHAMModels",
         "inputs": {
             "run_global": true
         }
     },
-    "3": {
+    "4": {
         "class_type": "WHAMInference",
         "inputs": {
             "images": [
-                "1",
+                "2",
                 0
             ],
             "model": [
-                "2",
+                "3",
                 0
             ],
             "fps": 30.0
         }
     },
-    "4": {
+    "5": {
         "class_type": "SaveSMPLXParams",
         "inputs": {
             "smpl_params": [
-                "3",
+                "4",
                 0
             ],
             "filename_prefix": "motion_capture",
             "format": "npz"
         }
     },
-    "5": {
+    "6": {
         "class_type": "VHS_VideoCombine",
         "inputs": {
             "images": [
-                "3",
+                "4",
                 1
             ],
             "frame_rate": 30,
