@@ -1,0 +1,98 @@
+{
+    "1": {
+        "class_type": "VHS_LoadVideo",
+        "inputs": {
+            "video": "girl_dance_on_road.mp4",
+            "force_rate": 30,
+            "custom_width": 1920,
+            "custom_height": 1080,
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+        }
+    },
+    "2": {
+        "class_type": "VHS_SelectImages",
+        "inputs": {
+            "image": [
+                "1",
+                0
+            ],
+            "indexes": "0:-1",
+            "err_if_missing": false,
+            "err_if_empty": false
+        }
+    },
+    "3": {
+        "class_type": "LoadWHAMModels",
+        "inputs": {
+            "run_global": true
+        }
+    },
+    "4": {
+        "class_type": "WHAMInference",
+        "inputs": {
+            "images": [
+                "2",
+                0
+            ],
+            "model": [
+                "3",
+                0
+            ],
+            "fps": 30.0
+        }
+    },
+    "5": {
+        "class_type": "SaveSMPLXParams",
+        "inputs": {
+            "smpl_params": [
+                "4",
+                0
+            ],
+            "filename_prefix": "motion_capture",
+            "format": "npz"
+        }
+    },
+    "6": {
+        "class_type": "ExportSMPLXAnimation",
+        "inputs": {
+            "smpl_params": [
+                "4",
+                0
+            ],
+            "filename_prefix": "skeleton_anim",
+            "format": "bvh",
+            "fps": 30.0
+        }
+    },
+    "7": {
+        "class_type": "ExportSMPLXMeshSequence",
+        "inputs": {
+            "smpl_params": [
+                "4",
+                0
+            ],
+            "model_path": "models/smplx",
+            "gender": "neutral",
+            "filename_prefix": "animated_mesh",
+            "format": "obj",
+            "frame_skip": 1
+        }
+    },
+    "8": {
+        "class_type": "VHS_VideoCombine",
+        "inputs": {
+            "images": [
+                "4",
+                1
+            ],
+            "frame_rate": 30,
+            "loop_count": 0,
+            "filename_prefix": "motion_visualization",
+            "format": "video/h264-mp4",
+            "pingpong": false,
+            "save_output": true
+        }
+    }
+}
