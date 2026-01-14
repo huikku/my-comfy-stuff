@@ -1,140 +1,123 @@
-# ComfyUI Video Inpainting Workflows
+# ComfyUI Video Workflows
 
-**Complete clean plate generation workflows for removing foreground characters from video scenes.**
-
-## ✅ WORKING: Full Video Inpainting!
-
-**ProPainter is now fixed and working!** These workflows generate complete clean plates, not just masks.
-
----
+Complete workflows for video inpainting and human motion capture.
 
 ## 📦 What's Included
 
-### Complete Workflows (v2 - WITH Inpainting)
-- `video_inpaint_sam3_complete_v2.json` - SAM3 + ProPainter → **COMPLETE CLEAN PLATE**
-- `video_inpaint_rmbg_complete_v2.json` - RMBG + ProPainter → **COMPLETE CLEAN PLATE**
+### Video Inpainting Workflows ✅
+Clean plate generation for removing foreground characters.
 
-### Mask-Only Workflows (v1 - Legacy)
-- `video_inpaint_sam3_basic_v1.json` - SAM3 mask generation only
-- `video_inpaint_rmbg_fast_v1.json` - RMBG mask generation only
+**Complete Workflows (v2 - WITH Inpainting):**
+- `video_inpaint_sam3_complete_v2.json` - SAM3 + ProPainter
+- `video_inpaint_rmbg_complete_v2.json` - RMBG + ProPainter
 
-### Custom Node
-- `ComfyUI-Feathered-Inpaint` - Feathered mask edges with pixel preservation
+### SMPL-X Motion Capture Workflow ⭐ NEW
+Human motion tracking for match move and animation.
+
+**Workflow:**
+- `smplx_motion_capture_v1.json` - WHAM + SMPL-X parameter export
+
+### Custom Nodes
+- `ComfyUI-Feathered-Inpaint` - Feathered mask edges
+- `ComfyUI-SMPLX-Export` - SMPL-X parameter and mesh export
 
 ### Documentation
-- `SUMMARY.md` - Complete overview and quick start
+- `README.md` - This file
+- `SMPLX_MOTION_CAPTURE_GUIDE.md` - Motion capture guide
+- `SUMMARY.md` - Video inpainting overview
 - `VIDEO_INPAINTING_RESEARCH_REPORT.md` - Technical research
 - `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md` - Advanced options
-- `TEMPORAL_SMOOTHING_GUIDE.md` - Reduce flickering (detailed)
-- `TEMPORAL_SMOOTHING_QUICKSTART.md` - Quick start guide
-- `workflows/VIDEO_INPAINT_WORKFLOWS_README.md` - Workflow usage guide
+- `TEMPORAL_SMOOTHING_GUIDE.md` - Reduce flickering
+- `workflows/VIDEO_INPAINT_WORKFLOWS_README.md` - Workflow usage
 
 ---
 
-## 🚀 Quick Start
+## 🎬 Video Inpainting
 
-**Use v2 workflows for complete clean plates!**
+**Purpose:** Remove characters from video, generate clean plates
 
-1. **Install required ComfyUI nodes:**
-   - ComfyUI-VideoHelperSuite (VHS)
-   - ComfyUI-TBG-SAM3 (for SAM3 workflow)
-   - ComfyUI-RMBG (for RMBG workflow)
-   - ComfyUI_ProPainter_Nodes (for inpainting)
+**Quick Start:**
+1. Install: VHS, SAM3/RMBG, ProPainter
+2. Load v2 workflow
+3. Set video path
+4. Get complete clean plate!
 
-2. **Copy custom node:**
-   ```bash
-   cp -r custom_nodes/ComfyUI-Feathered-Inpaint /path/to/comfyui/custom_nodes/
-   ```
-
-3. **Load a v2 workflow:**
-   - Open ComfyUI
-   - Load `video_inpaint_sam3_complete_v2.json` or `video_inpaint_rmbg_complete_v2.json`
-   - Set video path in "VHS_LoadVideoPath" node
-   - Click "Queue Prompt"
-
-4. **Get your clean plate:**
-   - Output saved to `/path/to/comfyui/output/`
-   - Complete video with character removed!
+**See:** `SUMMARY.md` for details
 
 ---
 
-## 🎯 Workflows
+## 🎯 SMPL-X Motion Capture
 
-### SAM3 Complete v2 ⭐ NEW
-- **Output:** Complete clean plate video (character removed, background filled)
-- **VRAM:** 20-30GB
-- **Best for:** Complex scenes, multiple characters, automated detection
-- **Includes:** SAM3 detection + feathered mask + ProPainter inpainting
+**Purpose:** Track human motion for match move, animation reference
 
-### RMBG Complete v2 ⭐ NEW
-- **Output:** Complete clean plate video (character removed, background filled)
-- **VRAM:** 12-18GB
-- **Best for:** Static camera, clean subjects, faster processing
-- **Includes:** RMBG removal + feathered mask + ProPainter inpainting
+**Quick Start:**
+1. Install: VHS, WHAM, smplx library
+2. Load `smplx_motion_capture_v1.json`
+3. Set video path
+4. Get SMPL-X parameters + visualization!
 
-### v1 Workflows (Legacy - Mask Only)
-- Use v2 instead for complete results
-- v1 only generates masks without inpainting
+**Outputs:**
+- SMPL-X parameters (.npz, .json, .pkl)
+- Visualization video
+- Compatible with Blender, Maya, Houdini
+
+**See:** `SMPLX_MOTION_CAPTURE_GUIDE.md` for details
 
 ---
 
-## ✅ What's Fixed
+## 🚀 Installation
 
-**ProPainter Integration:**
-- ✅ Fixed PyTorch version parsing for dev versions
-- ✅ ProPainter nodes now load successfully
-- ✅ Full video inpainting working
-- ✅ Complete clean plate generation
+### Video Inpainting
+```bash
+# Required nodes (install via ComfyUI Manager):
+- ComfyUI-VideoHelperSuite (VHS)
+- ComfyUI-TBG-SAM3 or ComfyUI-RMBG
+- ComfyUI_ProPainter_Nodes
 
-**Complete Pipeline:**
+# Copy custom node:
+cp -r custom_nodes/ComfyUI-Feathered-Inpaint /path/to/comfyui/custom_nodes/
 ```
-1. Load Video
-   ↓
-2. Generate Mask (SAM3 or RMBG)
-   ↓
-3. Feather Edges
-   ↓
-4. VIDEO INPAINTING (ProPainter) ✅ NOW WORKING
-   ↓
-5. Save Clean Plate
+
+### SMPL-X Motion Capture
+```bash
+# Required nodes:
+- ComfyUI-VideoHelperSuite (VHS)
+- ComfyUI-WHAM
+
+# Install SMPL-X library:
+pip install smplx
+
+# Copy custom node:
+cp -r custom_nodes/ComfyUI-SMPLX-Export /path/to/comfyui/custom_nodes/
+
+# Download SMPL-X models:
+# https://smpl-x.is.tue.mpg.de/
+# Extract to: models/smplx/
 ```
 
 ---
 
-## 📊 VRAM Requirements
+## 📊 Workflows Summary
 
-| GPU VRAM | Recommended Workflow | Resolution |
-|----------|---------------------|------------|
-| **12GB** | RMBG Complete v2 | 512p |
-| **16GB** | RMBG Complete v2 | 720p |
-| **20GB** | SAM3 Complete v2 | 512p |
-| **24GB+** | SAM3 Complete v2 | 720p-1080p |
-
----
-
-## 📚 Documentation
-
-**Start here:** `SUMMARY.md`
-
-**For details:**
-- Technical research → `VIDEO_INPAINTING_RESEARCH_REPORT.md`
-- Advanced options → `VIDEO_INPAINTING_ENHANCED_WORKFLOWS.md`
-- Reduce flickering → `TEMPORAL_SMOOTHING_QUICKSTART.md`
-- Workflow guide → `workflows/VIDEO_INPAINT_WORKFLOWS_README.md`
+| Workflow | Purpose | Output | VRAM |
+|----------|---------|--------|------|
+| **SAM3 Complete v2** | Clean plates | Video (character removed) | 20-30GB |
+| **RMBG Complete v2** | Clean plates (fast) | Video (character removed) | 12-18GB |
+| **SMPL-X Capture v1** | Motion tracking | SMPL-X params + viz | 4-8GB |
 
 ---
 
 ## 🔧 Requirements
 
 - ComfyUI 0.8.2+
-- PyTorch 2.11.0+ (dev versions supported)
-- 12GB+ VRAM (20GB+ recommended)
-- Required nodes: VHS, SAM3 or RMBG, ProPainter
+- PyTorch 2.11.0+
+- 8GB+ VRAM (12GB+ recommended)
+- FFmpeg (for video processing)
 
 ---
 
-**Version:** 2.0 (Complete Video Inpainting)  
+**Version:** 2.0 (Video Inpainting) + 1.0 (Motion Capture)  
 **Date:** January 14, 2026  
 **Author:** huikku
 
-**Ready to generate complete clean plates!** 🎬✨
+**Ready for video inpainting and motion capture!** 🎬✨

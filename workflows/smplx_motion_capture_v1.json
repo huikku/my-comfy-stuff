@@ -1,0 +1,60 @@
+{
+    "1": {
+        "class_type": "VHS_LoadVideoPath",
+        "inputs": {
+            "video": "",
+            "force_rate": 30,
+            "custom_width": 1920,
+            "custom_height": 1080,
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+        }
+    },
+    "2": {
+        "class_type": "LoadWHAMModels",
+        "inputs": {
+            "run_global": true
+        }
+    },
+    "3": {
+        "class_type": "WHAMInference",
+        "inputs": {
+            "images": [
+                "1",
+                0
+            ],
+            "model": [
+                "2",
+                0
+            ],
+            "fps": 30.0
+        }
+    },
+    "4": {
+        "class_type": "SaveSMPLXParams",
+        "inputs": {
+            "smpl_params": [
+                "3",
+                0
+            ],
+            "filename_prefix": "motion_capture",
+            "format": "npz"
+        }
+    },
+    "5": {
+        "class_type": "VHS_VideoCombine",
+        "inputs": {
+            "images": [
+                "3",
+                1
+            ],
+            "frame_rate": 30,
+            "loop_count": 0,
+            "filename_prefix": "motion_visualization",
+            "format": "video/h264-mp4",
+            "pingpong": false,
+            "save_output": true
+        }
+    }
+}
