@@ -84,6 +84,10 @@ cp -r custom_nodes/ComfyUI-Feathered-Inpaint /path/to/comfyui/custom_nodes/
 - ComfyUI-VideoHelperSuite (VHS)
 - ComfyUI-WHAM
 
+# Install WHAM dependencies:
+pip install -r custom_nodes/ComfyUI-WHAM/requirements.txt
+pip install progress mmengine mmcv-lite mmpose
+
 # Install SMPL-X library:
 pip install smplx
 
@@ -94,6 +98,8 @@ cp -r custom_nodes/ComfyUI-SMPLX-Export /path/to/comfyui/custom_nodes/
 # https://smpl-x.is.tue.mpg.de/
 # Extract to: models/smplx/
 ```
+
+**See:** `SMPLX_INSTALLATION.md` for complete installation guide
 
 ---
 
