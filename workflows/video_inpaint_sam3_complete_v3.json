@@ -1,0 +1,92 @@
+{
+    "1": {
+        "class_type": "VHS_LoadVideoPath",
+        "inputs": {
+            "video": "",
+            "force_rate": 0,
+            "custom_width": 512,
+            "custom_height": 512,
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+        }
+    },
+    "2": {
+        "class_type": "TBGLoadSAM3Model",
+        "inputs": {
+            "device": "cuda"
+        }
+    },
+    "3": {
+        "class_type": "TBGSam3Segmentation",
+        "inputs": {
+            "sam3_model": [
+                "2",
+                0
+            ],
+            "image": [
+                "1",
+                0
+            ],
+            "confidence_threshold": 0.4,
+            "pipeline_mode": "all",
+            "detect_all": true,
+            "max_detections": 10,
+            "instances": false,
+            "crop_factor": 1.5,
+            "min_size": 100,
+            "fill_holes": false,
+            "text_prompt": "person"
+        }
+    },
+    "4": {
+        "class_type": "FeatherMask",
+        "inputs": {
+            "mask": [
+                "3",
+                5
+            ],
+            "left": 15,
+            "top": 15,
+            "right": 15,
+            "bottom": 15
+        }
+    },
+    "5": {
+        "class_type": "ProPainterInpaint",
+        "inputs": {
+            "image": [
+                "1",
+                0
+            ],
+            "mask": [
+                "4",
+                0
+            ],
+            "width": 512,
+            "height": 512,
+            "mask_dilates": 5,
+            "flow_mask_dilates": 8,
+            "ref_stride": 10,
+            "neighbor_length": 10,
+            "subvideo_length": 80,
+            "raft_iter": 20,
+            "fp16": "enable"
+        }
+    },
+    "6": {
+        "class_type": "VHS_VideoCombine",
+        "inputs": {
+            "images": [
+                "5",
+                0
+            ],
+            "frame_rate": 30,
+            "loop_count": 0,
+            "filename_prefix": "clean_plate_sam3",
+            "format": "video/h264-mp4",
+            "pingpong": false,
+            "save_output": true
+        }
+    }
+}
